@@ -103,7 +103,11 @@ app:
               [Allowing the membarrier System Call](#allowing-the-membarrier-system-call)
               for more details.
             - Make sure the kernel of your Linux distribution is up-to-date.
-  changelog: []
+  changelog:
+    - version: 23.11.1
+      date: 2023-11-21
+      changes:
+        - 'Initial release.'
 
 container:
   unsupported_volume: /storage
