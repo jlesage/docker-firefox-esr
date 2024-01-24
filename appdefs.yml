@@ -104,6 +104,13 @@ app:
               for more details.
             - Make sure the kernel of your Linux distribution is up-to-date.
   changelog:
+    - version: 24.01.1
+      date: 2024-01-23
+      changes:
+        - 'Updated Firefox ESR to version 115.6.0-r0.'
+        - 'Updated baseimage to version 4.5.3, which brings the following changes:'
+        - '2:Disabled fullscreen support when page is loaded into an iFrame.'
+        - '2:Rebuilt against latest distro images to get security fixes.'
     - version: 23.12.1
       date: 2023-12-20
       changes:
