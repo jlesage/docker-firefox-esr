@@ -29,3 +29,5 @@ set -e
 
 /usr/bin/firefox-esr --version
 exec /usr/bin/firefox-esr "$@" >> /config/log/firefox/output.log 2>> /config/log/firefox/error.log
+
+# vim:ft=sh:ts=4:sw=4:et:sts=4
