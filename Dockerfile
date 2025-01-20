@@ -19,7 +19,7 @@ FROM jlesage/baseimage-gui:alpine-3.21-v4.6.7
 ARG DOCKER_IMAGE_VERSION=
 
 # Define software versions.
-ARG FIREFOX_VERSION=128.5.1-r0
+ARG FIREFOX_VERSION=128.6.0-r0
 
 # Define working directory.
 WORKDIR /tmp
