@@ -104,6 +104,10 @@ app:
               for more details.
             - Make sure the kernel of your Linux distribution is up-to-date.
   changelog:
+    - version: 25.11.1
+      date: 2025-11-10
+      changes:
+        - 'Updated Firefox ESR to version 140.4.0-r0.'
     - version: 25.09.1
       date: 2025-09-07
       changes:
