@@ -12,6 +12,8 @@ This is a Docker container for [Firefox ESR](https://www.mozilla.org/en-CA/firef
 The graphical user interface (GUI) of the application can be accessed through a
 modern web browser, requiring no installation or configuration on the client
 
+> This Docker container is entirely unofficial and not made by the creators of Firefox ESR.
+
 ---
 
 [![Firefox ESR logo](https://images.weserv.nl/?url=raw.githubusercontent.com/jlesage/docker-templates/master/jlesage/images/firefox-esr-icon.png&w=110)](https://www.mozilla.org/en-CA/firefox/enterprise/)[![Firefox ESR](https://images.placeholders.dev/?width=352&height=110&fontFamily=monospace&fontWeight=400&fontSize=52&text=Firefox%20ESR&bgColor=rgba(0,0,0,0.0)&textColor=rgba(121,121,121,1))](https://www.mozilla.org/en-CA/firefox/enterprise/)
