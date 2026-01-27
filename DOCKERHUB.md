@@ -21,7 +21,7 @@ modern web browser, requiring no installation or configuration on the client
 
 Firefox Extended Support Release (ESR) is an official version of Firefox
 developed for large organizations like universities and businesses that need to
-set up and maintain Firefox on a large scale.  Firefox ESR does not come with
+set up and maintain Firefox on a large scale. Firefox ESR does not come with
 the latest features but it has the latest security and stability fixes.
 
 ---
