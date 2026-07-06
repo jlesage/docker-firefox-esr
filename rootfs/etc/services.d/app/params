@@ -25,3 +25,5 @@ fi
 if [ -n "${FF_OPEN_URL:-}" ]; then
     echo "$FF_OPEN_URL" | tr '|' '\n'
 fi
+
+# vim:ft=sh:ts=4:sw=4:et:sts=4
