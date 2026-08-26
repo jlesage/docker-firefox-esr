@@ -4,6 +4,19 @@
 # https://github.com/jlesage/docker-firefox-esr
 #
 
+# Docker image version is provided via build arg.
+ARG DOCKER_IMAGE_VERSION=
+
+# Define software versions.
+ARG FIREFOX_VERSION=140.12.0-r0
+ARG NSPR_VERSION=4.38.2
+
+# Define software download URLs.
+ARG NSPR_URL=https://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v${NSPR_VERSION}/src/nspr-${NSPR_VERSION}.tar.gz
+
+# Get Dockerfile cross-compilation helpers.
+FROM --platform=$BUILDPLATFORM tonistiigi/xx AS xx
+
 # Build the membarrier check tool.
 FROM alpine:3.14 AS membarrier
 WORKDIR /tmp
@@ -12,14 +25,23 @@ RUN apk --no-cache add build-base linux-headers
 RUN gcc -static -o membarrier_check membarrier_check.c
 RUN strip membarrier_check
 
+# Rebuild NSPR with 64-bit file offsets (Alpine's package caps PR_Seek64 at 2GiB on musl).
+FROM --platform=$BUILDPLATFORM alpine:3.24 AS nspr
+ARG TARGETPLATFORM
+ARG NSPR_URL
+COPY --from=xx / /
+COPY src/nspr /build
+RUN /build/build.sh "$NSPR_URL"
+RUN xx-verify \
+    /tmp/nspr-install/usr/lib/libnspr4.so \
+    /tmp/nspr-install/usr/lib/libplc4.so \
+    /tmp/nspr-install/usr/lib/libplds4.so
+
 # Pull base image.
 FROM jlesage/baseimage-gui:alpine-3.24-v4.13.2
 
-# Docker image version is provided via build arg.
-ARG DOCKER_IMAGE_VERSION=
-
-# Define software versions.
-ARG FIREFOX_VERSION=140.12.0-r0
+ARG FIREFOX_VERSION
+ARG DOCKER_IMAGE_VERSION
 
 # Define working directory.
 WORKDIR /tmp
@@ -62,6 +84,9 @@ RUN \
 # Add files.
 COPY rootfs/ /
 COPY --from=membarrier /tmp/membarrier_check /usr/bin/
+COPY --from=nspr /tmp/nspr-install/usr/lib/libnspr4.so* /usr/lib/
+COPY --from=nspr /tmp/nspr-install/usr/lib/libplc4.so* /usr/lib/
+COPY --from=nspr /tmp/nspr-install/usr/lib/libplds4.so* /usr/lib/
 
 # Set internal environment variables.
 RUN \

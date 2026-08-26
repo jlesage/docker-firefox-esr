@@ -1,0 +1,21 @@
+Use native 64-bit off_t on musl Linux.
+
+_linux.h only treats glibc as having large-file support. On musl that
+defines _PR_NO_LARGE_FILES, so PR_Seek64 emulates lseek with a 2GiB
+offset cap. Firefox uses PR_Seek64 for File.slice() during chunked
+uploads, which then fail past 2GiB.
+
+musl's off_t is always 64-bit, so _PR_HAVE_LARGE_OFF_T is the correct
+feature set (same as BSD).
+--- a/pr/include/md/_linux.h
++++ b/pr/include/md/_linux.h
+@@ -336,7 +336,8 @@
+     || defined(ANDROID)
+ #define _PR_HAVE_OFF64_T
+ #else
+-#define _PR_NO_LARGE_FILES
++/* musl and other non-glibc Linux: off_t is already 64-bit. */
++#define _PR_HAVE_LARGE_OFF_T
+ #endif
+ #if (__GLIBC__ > 2) || (__GLIBC__ == 2 && __GLIBC_MINOR__ >= 1) \
+     || defined(ANDROID)
