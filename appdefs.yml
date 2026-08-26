@@ -98,6 +98,10 @@ app:
               for more details.
             - Make sure the kernel of your Linux distribution is up-to-date.
   changelog:
+    - version: 26.08.3
+      date: 2026-08-26
+      changes:
+        - 'Fixed Firefox uploads stalling at 2GiB.'
     - version: 26.08.2
       date: 2026-08-17
       changes:
