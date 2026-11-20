@@ -8,7 +8,7 @@
 ARG DOCKER_IMAGE_VERSION=
 
 # Define software versions.
-ARG FIREFOX_VERSION=140.12.0-r0
+ARG FIREFOX_VERSION=153.7.0-r0
 ARG NSPR_VERSION=4.38.2
 
 # Define software download URLs.
